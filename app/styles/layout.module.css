@@ -11,7 +11,7 @@
 }
 
 .logo {
-  height: 40vmin;
+  height: 50px;
   pointer-events: none;
 }
 
@@ -66,12 +66,12 @@
 
 @keyframes logo-float {
   0% {
-    transform: translateY(0);
+    transform: translateY(-5px);
   }
   50% {
-    transform: translateY(10px);
+    transform: translateY(5px);
   }
   100% {
-    transform: translateY(0px);
+    transform: translateY(-5px);
   }
 }

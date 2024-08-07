@@ -21,3 +21,8 @@ a {
   height: 11vw;
   object-fit: contain;
 }
+
+.cart-number{
+  right: -4px;
+  font-size: 1em;
+}
