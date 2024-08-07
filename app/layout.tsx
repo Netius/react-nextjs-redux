@@ -3,6 +3,9 @@ import type { ReactNode } from "react";
 import { StoreProvider } from "./StoreProvider";
 import { Nav } from "./components/Nav";
 
+import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/js/bootstrap.bundle.min";
+
 import "./styles/globals.css";
 import styles from "./styles/layout.module.css";
 
@@ -19,13 +22,13 @@ export default function RootLayout({ children }: Props) {
             <Nav />
 
             <header className={styles.header}>
-              <Image
+              {/* <Image
                 src="/logo.svg"
                 className={styles.logo}
                 alt="logo"
                 width={100}
                 height={100}
-              />
+              /> */}
             </header>
 
             <main className={styles.main}>{children}</main>
