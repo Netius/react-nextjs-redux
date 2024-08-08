@@ -9,7 +9,7 @@ import Image from "next/image";
 
 export const Nav = () => {
   const pathname = usePathname();
-  const { cartProductIds } = useSelector((state) => state.cart);
+  const { cartProductIds } = useSelector((state:any) => state.cart);
 
   return (
     <>
@@ -35,15 +35,15 @@ export const Nav = () => {
                   className='nav-link'
                   href="/"
                 >
-                  Home
+                  Products
                 </Link>
               </li>
               <li className="nav-item">
                 <Link
                   className='nav-link'
-                  href="/verify"
+                  href="/counter"
                 >
-                  Verify
+                  Counter
                 </Link>
               </li>
               <li className="nav-item">
@@ -54,14 +54,14 @@ export const Nav = () => {
                   Quotes
                 </Link>
               </li>
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <Link
                   className='nav-link'
                   href="/products"
                 >
                   Products
                 </Link>
-              </li>
+              </li> */}
             </ul>
             <Link href={"/cart"} className="btn btn-light position-relative me-4">
               Cart
