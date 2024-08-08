@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { Counter } from "./components/counter/Counter";
+import Products from "./products/page";
+
 
 export default function IndexPage() {
-  return <Counter />;
+  return <Products />;
 }
 
 export const metadata: Metadata = {
-  title: "Redux Toolkit",
+  title: "React NextJs Redux Toolkit",
 };
