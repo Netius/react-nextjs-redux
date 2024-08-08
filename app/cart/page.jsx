@@ -16,13 +16,17 @@ export default function Cart() {
 	return (
 		<div className="cart container-xxl">
 			{cartProductData.length > 0 ? (
-				<div className="cart-product">
-					<h3 className="header">Items in cart</h3>
+				<div>
+					<div className="my-5">
+						<h1 className="header">Items in cart</h1>
+						<p className="h4">Showing elements in cart using Redux State Management and Slice - "Ducks"</p>
+					</div>
 					<div className="row">
 						{cartProductData.map((product, index) => (
-							<div className="col col-3 mb-4" key={product.id + index}>
+							<div className="col col-md-3 mb-4" key={product.id + index}>
 								<div className="card h-100">
-									<img className="card-img-top" src={product.imageUrl} alt="product" />
+									<img className="card-img-top" src={product.imageUrl} alt="product" style={{ height: "135px" }}
+																	/>
 
 									<div className="card-body">
 										<h4>{product.name}</h4>
@@ -40,8 +44,10 @@ export default function Cart() {
 						))}
 					</div>
 					<footer className="text-center">
-					<button className="btn btn-dark btn-lg" onClick={() => dispatch(clearAllItems())}>Clear cart</button>
-				</footer>
+						<button className="btn btn-dark btn-lg" onClick={() => dispatch(clearAllItems())}>
+							Clear cart
+						</button>
+					</footer>
 				</div>
 			) : (
 				<div className="text-center empty-cart">
