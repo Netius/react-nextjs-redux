@@ -4,10 +4,11 @@ import { counterSlice } from "./features/counter/counterSlice";
 import { quotesApiSlice } from "./features/quotes/quotesApiSlice";
 import { cartSlice } from "@/app/data/cartSlice";
 import {productsApiSlice} from "@/app/data/productSlice";
+import { toastMessageSlice } from "@/app/data/toastMessageSlice";
 
 // `combineSlices` automatically combines the reducers using
 // their `reducerPath`s, therefore we no longer need to call `combineReducers`.
-const rootReducer = combineSlices(counterSlice, quotesApiSlice, cartSlice, productsApiSlice);
+const rootReducer = combineSlices(counterSlice, quotesApiSlice, cartSlice, productsApiSlice , toastMessageSlice);
 // Infer the `RootState` type from the root reducer
 export type RootState = ReturnType<typeof rootReducer>;
 

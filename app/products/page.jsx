@@ -1,23 +1,30 @@
 "use client";
 import { cartSlice } from "../data/cartSlice";
+import { toastMessageSlice } from "../data/toastMessageSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useGetProductsQuery } from "../data/productSlice";
 import { useState } from "react";
 import LoadingSpinner from "../components/spinner/LoadingSpinner";
 import { ErrorMessage } from "../components/error/ErrorMessage";
+import Image from 'next/image'
+import ToastMessage from "../components/toast/ToastMessage";
+
 
 export default function Products() {
 
-	const [productsList, setProductsList] = useState(12) // Passing a number to useState will sett a limit in fetch products
+	const [productsList, setProductsList] = useState(4) // Passing a number to useState will sett a limit in fetch products
   // Using a query hook automatically fetches data and returns query values
 
 	const { data, isError, isLoading, isSuccess } = useGetProductsQuery(productsList);
 	
 	const cart = useSelector((state) => state.cart);
 	const { addToCart, removeFromCart } = cartSlice.actions;
+	
+	const {toastMessage} = useSelector((state) => state.toast);
+	const {successToast} = toastMessageSlice.actions;
+
 	const dispatch = useDispatch();
 	
-
 	return (
 		<div className="cart container-xxl">
 			<div className="my-5">
@@ -25,6 +32,7 @@ export default function Products() {
 				<p className="h4">
 					Example how to use Redux Slice, RTK Query for fetch Api and State Management to updates a shopping cart
 				</p>
+				<ToastMessage message={toastMessage} />
 			</div>
 			<LoadingSpinner isLoading={isLoading}/>
 			<ErrorMessage  isError={isError} />
@@ -33,18 +41,27 @@ export default function Products() {
 				{data?.map((product, index) => (
 					<div className="col col-md-3 mb-4" key={index}>
 						<div key={product.id} className="card h-100">
-							<img
+							<Image 
+								className="card-img-top" 
+								src={product.download_url} 
+								width={200}
+								height={200}
+								loading="lazy"
+								alt={"Image from " + product.author} />
+							{/* <img
 								className="card-img-top"
 								// style={{ height: "135px" }}
-								src={product.download_url}
+								src={product.url}
 								alt="product"
-							/>
+							/> */}
 
 							<div className="card-body">
 								<h4>{product.author}</h4>
 								<p className="card-text text-truncate">{product.detail}</p>
 								{!cart.cartProductIds.includes(product.id) && (
-									<button className="btn btn-primary me-2" onClick={() => dispatch(addToCart(product.id))}>
+									<button className="btn btn-primary me-2" 
+										onClick={() => [dispatch(addToCart(product.id)), 
+																		dispatch(successToast('Product added to cart'))]}>
 										<i className="bi bi-trash-fill" />
 										Add Item
 									</button>
