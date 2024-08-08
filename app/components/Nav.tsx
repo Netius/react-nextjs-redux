@@ -63,12 +63,12 @@ export const Nav = () => {
                 </Link>
               </li>
             </ul>
-            <Link
-              className='btn btn-light'
-              href="/cart"
-            >
+            <Link href={"/cart"} className="btn btn-light position-relative me-4">
               Cart
-              <sup className="cart-number">{cartProductIds.length}</sup>
+              <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
+                {cartProductIds.length}
+                <span className="visually-hidden">items in cart</span>
+              </span>
             </Link>
           </div>
         </div>
