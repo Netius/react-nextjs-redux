@@ -5,14 +5,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { useGetProductsQuery } from "../data/productSlice";
 import { useState } from "react";
 import { ErrorMessage } from "../components/error/ErrorMessage";
+import Image from 'next/image'
 
 export default function Cart() {
 
-	const [productsList, setProductsList] = useState(12)
+	const [productsList, setProductsList] = useState(4)
 	const { data, isError, isLoading, isSuccess } = useGetProductsQuery(productsList);
 
 	const { cartProductIds } = useSelector((state) => state.cart);
-	const cartProductData = data.filter((product) =>
+	const cartProductData = data?.filter((product) =>
 		cartProductIds.includes(product.id)
 	);
 
@@ -21,7 +22,7 @@ export default function Cart() {
 
 	return (
 		<div className="cart container-xxl">
-			{cartProductData.length > 0 ? (
+			{cartProductData?.length > 0 ? (
 				<div>
 					<div className="my-5">
 						<h1 className="header">Items in cart</h1>
@@ -31,9 +32,14 @@ export default function Cart() {
 						{cartProductData.map((product, index) => (
 							<div className="col col-md-3 mb-4" key={product.id + index}>
 								<div className="card h-100">
-									<img className="card-img-top" src={product.download_url} alt="product" style={{ height: "135px" }}
-																	/>
-
+									{/* <img className="card-img-top" src={product.download_url} alt="product" style={{ height: "135px" }}/> */}
+									<Image 
+										className="card-img-top" 
+										src={product.download_url} 
+										width={200}
+										height={200}
+										loading="lazy"
+										alt={"Image from " + product.author} />
 									<div className="card-body">
 										<h4>{product.name}</h4>
 										<p className="card-text text-truncate">{product.author}</p>

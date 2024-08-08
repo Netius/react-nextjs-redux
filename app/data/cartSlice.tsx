@@ -1,22 +1,22 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
+// Need to type Initialstate here to fix error
+let cartProductArray: number[] = [];
 
 export const cartSlice = createSlice({
   name: 'cart',
   initialState: {
-    cartProductIds: []
+    cartProductIds: cartProductArray,
   },
   reducers: {
-    addToCart: (state, action) => {
+    addToCart: (state, action: PayloadAction<number>) => {
       state.cartProductIds = [action.payload, ...state.cartProductIds]
-      console.log(state.cartProductIds)
     },
-    removeFromCart: (state, action) => {
+    removeFromCart: (state, action: PayloadAction<number>) => {
       const indexOfId = state.cartProductIds.indexOf(action.payload)
       state.cartProductIds.splice(indexOfId, 1); 
-      console.log(state.cartProductIds)
-
     },
-    clearAllItems: (state,action ) => {
+    clearAllItems: (state,action: PayloadAction<number> ) => {
       state.cartProductIds = [];
     }
   }
