@@ -4,10 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useGetProductsQuery } from "../data/productSlice";
 import { useState } from "react";
 import LoadingSpinner from "../components/spinner/LoadingSpinner";
+import { ErrorMessage } from "../components/error/ErrorMessage";
 
-export default function products() {
+export default function Products() {
 
-	const [productsList, setProductsList] = useState() // Passing a number to useState will sett a limit in fetch products
+	const [productsList, setProductsList] = useState(12) // Passing a number to useState will sett a limit in fetch products
   // Using a query hook automatically fetches data and returns query values
 
 	const { data, isError, isLoading, isSuccess } = useGetProductsQuery(productsList);
@@ -20,11 +21,13 @@ export default function products() {
 	return (
 		<div className="cart container-xxl">
 			<div className="my-5">
-				<h1 className="header">Products overview <LoadingSpinner isLoading={isLoading}/> </h1>
+				<h1 className="header">Products overview</h1>
 				<p className="h4">
 					Example how to use Redux Slice, RTK Query for fetch Api and State Management to updates a shopping cart
 				</p>
 			</div>
+			<LoadingSpinner isLoading={isLoading}/>
+			<ErrorMessage  isError={isError} />
 
 			<div className="row">
 				{data?.map((product, index) => (
@@ -32,13 +35,13 @@ export default function products() {
 						<div key={product.id} className="card h-100">
 							<img
 								className="card-img-top"
-								style={{ height: "135px" }}
-								src={product.imageUrl}
+								// style={{ height: "135px" }}
+								src={product.download_url}
 								alt="product"
 							/>
 
 							<div className="card-body">
-								<h4>{product.name}</h4>
+								<h4>{product.author}</h4>
 								<p className="card-text text-truncate">{product.detail}</p>
 								{!cart.cartProductIds.includes(product.id) && (
 									<button className="btn btn-primary me-2" onClick={() => dispatch(addToCart(product.id))}>

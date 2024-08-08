@@ -3,10 +3,9 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 interface Product {
   id: number;
-  name: string;
-  detail: string;
-  price: number;
-  imageUrl: string
+  author: string;
+  url: string;
+  download_url: string
 }
 
 interface ProductApiResponse {
@@ -18,7 +17,7 @@ interface ProductApiResponse {
 
 // Define a service using a base URL and expected endpoints
 export const productsApiSlice = createApi({
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000/products" }),
+  baseQuery: fetchBaseQuery({ baseUrl: "https://picsum.photos/v2/list" }),
   reducerPath: "productsApi",
   // Tag types are used for caching and invalidation.
   tagTypes: ["Products"],
