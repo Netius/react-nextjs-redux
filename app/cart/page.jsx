@@ -1,15 +1,18 @@
 "use client";
 
 import { cartSlice } from "../data/cartSlice";
+import { toastMessageSlice } from "../data/toastMessageSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useGetProductsQuery } from "../data/productSlice";
 import { useState } from "react";
 import { ErrorMessage } from "../components/error/ErrorMessage";
 import Image from 'next/image'
+import ToastMessage from "../components/toast/ToastMessage";
+
 
 export default function Cart() {
 
-	const [productsList, setProductsList] = useState(4)
+	const [productsList, setProductsList] = useState(12)
 	const { data, isError, isLoading, isSuccess } = useGetProductsQuery(productsList);
 
 	const { cartProductIds } = useSelector((state) => state.cart);
@@ -18,10 +21,14 @@ export default function Cart() {
 	);
 
 	const { clearAllItems, removeFromCart } = cartSlice.actions;
+
+	const { toastMessage } = useSelector((state) => state.toast);
+	const { removeToast, clearToast } = toastMessageSlice.actions;
+
 	const dispatch = useDispatch();
 
 	return (
-		<div className="cart container-xxl">
+		<div className="cart container-xxl ">
 			{cartProductData?.length > 0 ? (
 				<div>
 					<div className="my-5">
@@ -45,7 +52,13 @@ export default function Cart() {
 										<p className="card-text text-truncate">{product.author}</p>
 										<button
 											className="btn btn-outline-danger"
-											onClick={() => dispatch(removeFromCart(product.id))}
+											onClick={() => [
+												dispatch(removeFromCart(product.id)),
+												dispatch(removeToast([`'${product.author}', ID: ${product.id} removed from cart`, "text-bg-danger"])),
+												setTimeout(() => {
+													dispatch(clearToast(""));
+												}, 3000),
+											]}
 										>
 											<i className="bi bi-trash-fill" />
 											Remove Item
@@ -68,6 +81,7 @@ export default function Cart() {
 					<p>You have not added any item to your cart.</p>
 				</div>
 			)}
+				<ToastMessage message={toastMessage} />
 				<ErrorMessage  isError={isError} />
 		</div>
 	);
