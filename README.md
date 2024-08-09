@@ -1,4 +1,8 @@
-# Redux Toolkit TypeScript Example
+# Overview 
+This is my learning projectto understand how to use Redux Slice, RTK Query for fetch Api and State Management to updates a shopping cart.
+Project build with React, NextJs and Redux ToolKit.
+
+## Redux Toolkit TypeScript Example
 
 This example shows how to integrate Next.js with [Redux Toolkit](https://redux-toolkit.js.org).
 

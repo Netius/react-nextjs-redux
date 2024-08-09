@@ -8,6 +8,7 @@ import LoadingSpinner from "../components/spinner/LoadingSpinner";
 import { ErrorMessage } from "../components/error/ErrorMessage";
 import Image from "next/image";
 import ToastMessage from "../components/toast/ToastMessage";
+import Link from "next/link";
 
 export default function Products() {
 	const [productsList, setProductsList] = useState(12); // Passing a number to useState will sett a limit in fetch products
@@ -27,11 +28,19 @@ export default function Products() {
 		<div className="cart container-xxl">
 			<div className="my-5">
 				<h1 className="header">Products overview</h1>
-				<p className="h4">
-					Example how to use Redux Slice, RTK Query for fetch Api and State Management to updates a
-					shopping cart
-				</p>
+				<p>Example how to use Redux Slice, RTK Query for fetch Api and State Management to updates a shopping cart</p>
+
+				<h2 className="h5 mt-3">Github repository</h2>
+				<Link target="_blank" className="link link-primary" href={'https://github.com/Netius/react-nextjs-redux'} >
+					https://github.com/Netius/react-nextjs-redux
+				</Link>
+
+				<h2 className="h5 mt-3">Deployed i Google Cloud App-Enginge</h2>
+				<Link target="_blank" className="link link-primary" href={'https://react-rtk-nextjs.ew.r.appspot.com/'} >
+					https://react-rtk-nextjs.ew.r.appspot.com/
+				</Link>
 			</div>
+
 			<ToastMessage message={toastMessage} />
 			<LoadingSpinner isLoading={isLoading} />
 			<ErrorMessage isError={isError} />
