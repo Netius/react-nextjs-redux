@@ -1,6 +1,11 @@
 # Overview 
+
 This is my learning projectto understand how to use Redux Slice, RTK Query for fetch Api and State Management to updates a shopping cart.
 Project build with React, NextJs and Redux ToolKit.
+
+Github repository: https://github.com/Netius/react-nextjs-redux
+
+Deployed i Google Cloud App-Engine: https://react-rtk-nextjs.ew.r.appspot.com/
 
 ## Redux Toolkit TypeScript Example
 

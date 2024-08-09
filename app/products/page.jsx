@@ -35,7 +35,7 @@ export default function Products() {
 					https://github.com/Netius/react-nextjs-redux
 				</Link>
 
-				<h2 className="h5 mt-3">Deployed i Google Cloud App-Enginge</h2>
+				<h2 className="h5 mt-3">Deployed i Google Cloud App-Engine</h2>
 				<Link target="_blank" className="link link-primary" href={'https://react-rtk-nextjs.ew.r.appspot.com/'} >
 					https://react-rtk-nextjs.ew.r.appspot.com/
 				</Link>
