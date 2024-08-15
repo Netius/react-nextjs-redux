@@ -1,9 +1,10 @@
-import { Counter } from "../components/counter/Counter"
+import { Counter } from "../components/counter/Counter";
 
-const page = () => {
+const page: React.FC = () => {
   return (
     <Counter />
-  )
+  );
 }
 
 export default page;
+

@@ -21,7 +21,7 @@ export const Counter = () => {
   const status = useAppSelector(selectStatus);
   const [incrementAmount, setIncrementAmount] = useState("2");
 
-  const incrementValue = Number(incrementAmount) || 0;
+  const incrementValue:number = Number(incrementAmount) || 0;
 
   return (
     <div>
